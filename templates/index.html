@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Transaction Detection System</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-shield-alt"></i> Fraud Detection System</h1>
+            <p>Secure transaction monitoring with AI-powered fraud detection</p>
+        </div>
+
+        <div class="form-container">
+            <div id="alert" class="alert"></div>
+
+            <form id="transactionForm">
+                <div class="form-group">
+                    <label for="sender_id">Sender Customer ID</label>
+                    <input type="text" id="sender_id" name="sender_id" required placeholder="Enter sender's customer ID">
+                    <i class="fas fa-user"></i>
+                </div>
+
+                <div class="form-group">
+                    <label for="receiver_id">Receiver Customer ID</label>
+                    <input type="text" id="receiver_id" name="receiver_id" required placeholder="Enter receiver's customer ID">
+                    <i class="fas fa-user-friends"></i>
+                </div>
+
+                <div class="form-group">
+                    <label for="amount">Transaction Amount ($)</label>
+                    <input type="number" id="amount" name="amount" step="0.01" min="0.01" required placeholder="Enter transaction amount">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="Enter password">
+                    <i class="fas fa-lock"></i>
+                </div>
+
+                <button type="submit" class="btn" id="submitBtn">
+                    <i class="fas fa-credit-card"></i> Make Payment
+                </button>
+            </form>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                Analyzing transaction...
+            </div>
+
+            <div class="result-container" id="resultContainer">
+                <div class="result-title" id="resultTitle">
+                    <i class="fas fa-check-circle" id="resultIcon"></i>
+                    <span id="resultText"></span>
+                </div>
+
+                <div class="result-details" id="resultDetails"></div>
+
+                <div class="otp-section" id="otpSection">
+                    <h3><i class="fas fa-key"></i> Fraud Detected - OTP Verification Required</h3>
+                    <p style="color: #721c24;">Fraud detected. An OTP has been sent to your registered email address. Enter OTP below and click Verify to complete.</p>
+
+                    <div class="otp-input">
+                        <input type="text" id="verifyOtp" placeholder="Enter OTP from email" autocomplete="one-time-code">
+                        <button class="btn" id="verifyBtn" style="width: auto; padding: 12px 20px;">
+                            <i class="fas fa-check"></i> Verify
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
